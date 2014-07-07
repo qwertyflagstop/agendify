@@ -18,15 +18,13 @@
     self = [super init];
     if (self) {
         //Load Up the schedule
-        
-        NSData *dat = [[NSUserDefaults standardUserDefaults]objectForKey:@"sced"];
+        NSString *userKey = [NSString stringWithFormat:@"sced"];
+        NSData *dat = [[NSUserDefaults standardUserDefaults]objectForKey:userKey];
         NSArray *scedule = [NSKeyedUnarchiver unarchiveObjectWithData:dat];
         days = [NSMutableArray arrayWithArray:scedule];
 
         //Lets Load Up the schedule!
         if (scedule[0][0]==NULL) {
-            
-            
             days = [[NSMutableArray alloc]init];
             for (int i =0; i<7; i++) {
                 [days addObject:[[NSMutableArray alloc]init]];
@@ -123,7 +121,7 @@
                         }
                     }
                 }
-                
+                NSLog(@"loaded Scedule");
                 for (int i = 0; i<7; i++) {
                     for (int j =0; j<6; j++) {
                         NSLog(@"day %i block %i is %@",i,j,days[i][j]);

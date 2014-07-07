@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		017532BB196B16F60056C3E9 /* SheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 017532BA196B16F60056C3E9 /* SheduleViewController.m */; };
 		019B24A0195B2A5000015298 /* SchoolSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B249F195B2A5000015298 /* SchoolSchedule.m */; };
-		019B24A3195B3A2E00015298 /* DailyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B24A2195B3A2E00015298 /* DailyViewController.m */; };
+		019B24A3195B3A2E00015298 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B24A2195B3A2E00015298 /* LogInViewController.m */; };
 		019B24B9195B4E9500015298 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B24A7195B4E9500015298 /* AFHTTPRequestOperation.m */; };
 		019B24BA195B4E9500015298 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B24A9195B4E9500015298 /* AFHTTPRequestOperationManager.m */; };
 		019B24BB195B4E9500015298 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 019B24AB195B4E9500015298 /* AFHTTPSessionManager.m */; };
@@ -49,10 +50,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		017532B9196B16F60056C3E9 /* SheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SheduleViewController.h; sourceTree = "<group>"; };
+		017532BA196B16F60056C3E9 /* SheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SheduleViewController.m; sourceTree = "<group>"; };
 		019B249E195B2A5000015298 /* SchoolSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolSchedule.h; sourceTree = "<group>"; };
 		019B249F195B2A5000015298 /* SchoolSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolSchedule.m; sourceTree = "<group>"; };
-		019B24A1195B3A2E00015298 /* DailyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyViewController.h; sourceTree = "<group>"; };
-		019B24A2195B3A2E00015298 /* DailyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyViewController.m; sourceTree = "<group>"; };
+		019B24A1195B3A2E00015298 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
+		019B24A2195B3A2E00015298 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		019B24A6195B4E9500015298 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		019B24A7195B4E9500015298 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		019B24A8195B4E9500015298 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -203,8 +206,10 @@
 				01C374AB1959F1F900D5C5D9 /* AppDelegate.m */,
 				01C374AA1959F1F900D5C5D9 /* AppDelegate.h */,
 				01C374AD1959F1F900D5C5D9 /* Main.storyboard */,
-				019B24A1195B3A2E00015298 /* DailyViewController.h */,
-				019B24A2195B3A2E00015298 /* DailyViewController.m */,
+				019B24A1195B3A2E00015298 /* LogInViewController.h */,
+				019B24A2195B3A2E00015298 /* LogInViewController.m */,
+				017532B9196B16F60056C3E9 /* SheduleViewController.h */,
+				017532BA196B16F60056C3E9 /* SheduleViewController.m */,
 				019B249E195B2A5000015298 /* SchoolSchedule.h */,
 				019B249F195B2A5000015298 /* SchoolSchedule.m */,
 				01D28783195DD1FC00753995 /* SchoolClass.h */,
@@ -344,12 +349,13 @@
 				019B24A0195B2A5000015298 /* SchoolSchedule.m in Sources */,
 				019B24BD195B4E9500015298 /* AFSecurityPolicy.m in Sources */,
 				019B24CB195B536C00015298 /* XPathQuery.m in Sources */,
+				017532BB196B16F60056C3E9 /* SheduleViewController.m in Sources */,
 				01C374AC1959F1F900D5C5D9 /* AppDelegate.m in Sources */,
 				019B24C9195B536C00015298 /* TFHpple.m in Sources */,
 				019B24BA195B4E9500015298 /* AFHTTPRequestOperationManager.m in Sources */,
 				019B24BE195B4E9500015298 /* AFURLConnectionOperation.m in Sources */,
 				019B24B9195B4E9500015298 /* AFHTTPRequestOperation.m in Sources */,
-				019B24A3195B3A2E00015298 /* DailyViewController.m in Sources */,
+				019B24A3195B3A2E00015298 /* LogInViewController.m in Sources */,
 				019B24BF195B4E9500015298 /* AFURLRequestSerialization.m in Sources */,
 				01D28785195DD1FC00753995 /* SchoolClass.m in Sources */,
 				019B24CA195B536C00015298 /* TFHppleElement.m in Sources */,

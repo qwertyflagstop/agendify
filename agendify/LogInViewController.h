@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "SchoolSchedule.h"
 
-@interface DailyViewController : UIViewController
+@interface LogInViewController : UIViewController
 
 @property (nonatomic,strong) SchoolSchedule *userSchedule;
+@property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passWordTextField;
 
+- (IBAction)logIn:(id)sender;
 
 @end
