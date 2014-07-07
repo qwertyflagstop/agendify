@@ -19,8 +19,8 @@
 {
     [super viewDidLoad];
     SchoolSchedule *sched = [[SchoolSchedule alloc]initWithUsername:@"tonyshu" Password:@"Mini12345!"];
-    //Added A Cool Comment
-    // Do any additional setup after loading the view.
+    
+    
 }
 
 
