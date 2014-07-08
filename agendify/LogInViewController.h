@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SchoolSchedule.h"
+#import "MBProgressHUD.h"
 
 @interface LogInViewController : UIViewController
 

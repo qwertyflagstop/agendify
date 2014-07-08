@@ -18,13 +18,21 @@
     self = [super init];
     if (self) {
         //Load Up the schedule
+        NSData *dat = [[NSUserDefaults standardUserDefaults]objectForKey:@"tonyshuMini12345!"];
+        NSArray *scedule = [NSKeyedUnarchiver unarchiveObjectWithData:dat];
+        days = [NSMutableArray arrayWithArray:scedule];
+        [self performSelector:@selector(sendDataFound) withObject:self afterDelay:1.0];
+        
+        /*
         NSString *userKey = [NSString stringWithFormat:@"sced"];
+        NSString *lastUser = [[NSUserDefaults standardUserDefaults]objectForKey:@"user"];
         NSData *dat = [[NSUserDefaults standardUserDefaults]objectForKey:userKey];
         NSArray *scedule = [NSKeyedUnarchiver unarchiveObjectWithData:dat];
         days = [NSMutableArray arrayWithArray:scedule];
-
+    
         //Lets Load Up the schedule!
-        if (scedule[0][0]==NULL) {
+        
+        if (scedule[0][0]==NULL || ![lastUser isEqualToString:userName]) {
             days = [[NSMutableArray alloc]init];
             for (int i =0; i<7; i++) {
                 [days addObject:[[NSMutableArray alloc]init]];
@@ -37,7 +45,9 @@
             NSURLRequest *request = [NSURLRequest requestWithURL:url];
             AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
             [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                
                 TFHpple *parser = [TFHpple hppleWithHTMLData:responseObject];
+                NSLog(@"%@",[[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding]);
                 NSArray *elements = [parser searchWithXPathQuery:@"//div[contains(@id,'quickLookup')]/table"];
                 TFHppleElement *table = elements[0];
                 for (int i = 7; i<table.children.count-3; i+=2) {
@@ -128,16 +138,22 @@
                     }
                 }
                 NSArray *scedData = [days copy];
+                [[NSUserDefaults standardUserDefaults]setObject:userName forKey:@"user"];
                 [[NSUserDefaults standardUserDefaults]setObject:[NSKeyedArchiver archivedDataWithRootObject:scedData] forKey:@"sced"];
                 [[NSUserDefaults standardUserDefaults]synchronize];
+                
+                [[NSNotificationCenter defaultCenter]postNotification:[NSNotification notificationWithName:@"logged in" object:self]];
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 //handleFailure
                 NSLog(@"FAILURE");
             }];
             [operation start];
             
+        } else{
+            NSLog(@"HERE");
+            [[NSNotificationCenter defaultCenter]postNotification:[NSNotification notificationWithName:@"logged in" object:self]];
         }
-        
+        */
         
         
     }
@@ -155,6 +171,8 @@
         return false;
     }
 }
-
+-(void)sendDataFound{
+    [[NSNotificationCenter defaultCenter]postNotification:[NSNotification notificationWithName:@"logged in" object:self]];
+}
 
 @end
