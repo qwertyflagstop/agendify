@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		015E388B196CFFE6001F6D21 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 015E388A196CFFE6001F6D21 /* arrow.png */; };
 		017532BB196B16F60056C3E9 /* SheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 017532BA196B16F60056C3E9 /* SheduleViewController.m */; };
 		017532BE196C44260056C3E9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 017532BD196C44260056C3E9 /* MBProgressHUD.m */; };
 		017532C1196C5CFF0056C3E9 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 017532C0196C5CFF0056C3E9 /* NSDate+Helper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		015E388A196CFFE6001F6D21 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		017532B9196B16F60056C3E9 /* SheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SheduleViewController.h; sourceTree = "<group>"; };
 		017532BA196B16F60056C3E9 /* SheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SheduleViewController.m; sourceTree = "<group>"; };
 		017532BC196C44260056C3E9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				017532C0196C5CFF0056C3E9 /* NSDate+Helper.m */,
 				017532BC196C44260056C3E9 /* MBProgressHUD.h */,
 				017532BD196C44260056C3E9 /* MBProgressHUD.m */,
+				015E388A196CFFE6001F6D21 /* arrow.png */,
 				01C374B31959F1F900D5C5D9 /* Images.xcassets */,
 				01C374A21959F1F900D5C5D9 /* Supporting Files */,
 			);
@@ -336,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01C374B41959F1F900D5C5D9 /* Images.xcassets in Resources */,
+				015E388B196CFFE6001F6D21 /* arrow.png in Resources */,
 				01C374A61959F1F900D5C5D9 /* InfoPlist.strings in Resources */,
 				01C374AF1959F1F900D5C5D9 /* Main.storyboard in Resources */,
 			);

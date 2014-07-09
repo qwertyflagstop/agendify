@@ -11,6 +11,8 @@
 
 @interface LogInViewController () {
     SchoolSchedule *sched;
+    NSMutableArray *dates;
+    NSMutableArray *schoolDay;
 }
 
 @end
@@ -23,7 +25,32 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    dates = [[NSMutableArray alloc]init];
+    schoolDay = [[NSMutableArray alloc]init];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recievedLoginNotification:) name:@"logged in" object:nil];
+    
+    NSURL *url = [NSURL URLWithString:@"http://alnoorgames.com/agendify/datesdata.txt"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *string = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSScanner *scanner = [NSScanner scannerWithString:string];
+        while (![scanner isAtEnd]) {
+            NSString *GOT;
+            [scanner scanUpToString:@"\n" intoString:&GOT];
+            int dayOfCycle = [[GOT substringFromIndex:GOT.length-2]intValue];
+            NSString *dateString = [GOT substringToIndex:GOT.length-2];
+            NSDate *date = [NSDate dateFromString:dateString withFormat:@"MM/dd/yyyy"];
+            NSLog(@"%@",dateString);
+            [dates addObject:date];
+            [schoolDay addObject:[NSNumber numberWithInt:dayOfCycle]];
+        }
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"FAIL");
+    }];
+    [operation start];
     
     
     
@@ -39,16 +66,22 @@
     loading.labelFont = [UIFont fontWithName:@"Futura" size:14.0];
     loading.labelText = @"logging in";
     
+    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"calendar"]) {
         SheduleViewController *vc = segue.destinationViewController;
+        vc.schoolDaysOfCycle = schoolDay;
+        vc.schoolDates = dates;
         vc.schedule = sched;
     }
 }
 -(void)recievedLoginNotification: (NSNotification *)notification{
-    [self performSegueWithIdentifier:@"calendar" sender:self];
+    if (dates.count >=1) {
+        [self performSegueWithIdentifier:@"calendar" sender:self];
+
+    }
 }
 
 @end

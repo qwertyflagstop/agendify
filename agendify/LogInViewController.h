@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "SchoolSchedule.h"
 #import "MBProgressHUD.h"
+#import "AFNetworking.h"
+#import "NSDate+Helper.h"
 
 @interface LogInViewController : UIViewController
 

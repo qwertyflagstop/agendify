@@ -80,7 +80,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="GU0-Pc-dTd">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="56" width="320" height="512"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </scrollView>
                             <view contentMode="scaleToFill" id="tuk-ez-uFw">
@@ -95,19 +95,21 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AF7-FV-sIb">
-                                        <rect key="frame" x="8" y="20" width="46" height="30"/>
+                                        <rect key="frame" x="9" y="18" width="57" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="HOME">
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                        <state key="normal" title="NOW">
+                                            <color key="titleColor" red="0.49803921580314636" green="0.49803921580314636" blue="0.49803921580314636" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="homeClicked:" destination="XBD-rn-zTp" eventType="touchUpInside" id="Mgf-DM-IrG"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="D7i-Lp-u7A">
-                                        <rect key="frame" x="281" y="20" width="30" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="D7i-Lp-u7A">
+                                        <rect key="frame" x="280" y="23" width="27" height="26"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="UP">
+                                        <state key="normal" title="UP" image="arrow.png">
                                             <color key="titleShadowColor" white="0.5" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -115,14 +117,16 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="compressionButton" destination="D7i-Lp-u7A" id="sEQ-hC-RIK"/>
                         <outlet property="dateLabel" destination="te3-QK-46f" id="F9E-Gh-3r7"/>
                         <outlet property="sceduleScroll" destination="GU0-Pc-dTd" id="Mji-bc-2Mg"/>
+                        <outlet property="topBar" destination="tuk-ez-uFw" id="WaA-j7-zpF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Meh-uQ-QpV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -130,6 +134,9 @@
             <point key="canvasLocation" x="234" y="-13"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="arrow.png" width="256" height="256"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
