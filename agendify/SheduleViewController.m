@@ -26,6 +26,8 @@
 {
     [super viewDidLoad];
     
+    //
+    
     
     isCompressed = false;
     sceduleScroll.delegate = self;
@@ -47,9 +49,9 @@
     UIColor *blue = [UIColor colorWithRed:0.154 green:0.501 blue:0.674 alpha:1.000];
     UIColor *yellow = [UIColor colorWithRed:0.896 green:0.655 blue:0.123 alpha:1.000];
     UIColor *red = [UIColor colorWithRed:1.000 green:0.218 blue:0.242 alpha:1.000];
-    UIColor *orange = [UIColor colorWithRed:0.795 green:0.329 blue:0.065 alpha:1.000];
+    UIColor *orange = [UIColor colorWithRed:1.000 green:0.502 blue:0.000 alpha:1.000];
     UIColor *purple = [UIColor colorWithRed:0.502 green:0.000 blue:1.000 alpha:1.000];
-    UIColor *tan = [UIColor colorWithWhite:0.298 alpha:1.000];
+    UIColor *tan = [UIColor colorWithRed:0.595 green:0.387 blue:0.146 alpha:1.000];
     
     
     colors[0] = [NSArray arrayWithObjects:tan,orange,yellow,green,red,blue,nil];
@@ -61,7 +63,8 @@
     colors[6] = [NSArray arrayWithObjects:orange,blue,yellow,green,tan,purple,nil];
     
     NSDate *dayte = schoolDates[0];
-    NSString *datText = [NSString stringWithFormat:@"%@ %@",[dayte stringDayOfWeek],[dayte stringWithDateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle]];
+    int cycDay = [(NSNumber *)[schoolDaysOfCycle objectAtIndex:0] intValue];
+    NSString *datText = [NSString stringWithFormat:@"%@ %@ (%i)",[dayte stringDayOfWeek],[dayte stringWithDateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle],cycDay];
     dateLabel.text =  datText;
     
     
@@ -70,7 +73,11 @@
             UIView *card = [[UIView alloc]initWithFrame:CGRectMake(i*sceduleScroll.frame.size.width, j*sceduleScroll.frame.size.height, sceduleScroll.frame.size.width, sceduleScroll.frame.size.height)];
             
             int dayofCycle = [(NSNumber *)schoolDaysOfCycle[i] intValue]-1;
-            card.backgroundColor = colors[dayofCycle][j];
+            if (j==0) {
+                card.backgroundColor = [UIColor colorWithWhite:0.231 alpha:1.000];
+            } else {
+                card.backgroundColor = colors[dayofCycle][j];
+            }
             int height = 90;
             UILabel *classLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, card.frame.size.height*0.4-(height*0.4), card.frame.size.width, height)];
             [classLabel setFont:[UIFont fontWithName:@"Futura" size:32.0]];
@@ -98,7 +105,11 @@
     int page = floor((sceduleScroll.contentOffset.x+sceduleScroll.frame.size.width*0.5)/sceduleScroll.frame.size.width);
     dateLabel.alpha =  1-fabs((page*sceduleScroll.frame.size.width)-sceduleScroll.contentOffset.x)/(sceduleScroll.frame.size.width*0.5);
     NSDate *dayte = schoolDates[page];
-    NSString *datText = [NSString stringWithFormat:@"%@ %@",[dayte stringDayOfWeek],[dayte stringWithDateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle]];
+   
+    int cycDay = [(NSNumber *)[schoolDaysOfCycle objectAtIndex:page] intValue];
+
+    
+    NSString *datText = [NSString stringWithFormat:@"%@ %@ (%i)",[dayte stringDayOfWeek],[dayte stringWithDateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle],cycDay];
     dateLabel.text =  datText;
     
 }
@@ -179,8 +190,9 @@
         
         UIView *card = cards[pagesoff*6+block];
         UILabel *title = card.subviews[0];
-        NSString *className = title.text;
-        if (block<6) {
+        int dayofCycle = [(NSNumber *)schoolDaysOfCycle[pagesoff] intValue]-1;
+        NSString *className = [schedule classForDay:dayofCycle Block:block];
+        if (block<6 && title.layer.animationKeys.count==0) {
             [UIView animateWithDuration:0.15 animations:^{
                 title.alpha = 0.0;
             } completion:^(BOOL finished) {

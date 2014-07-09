@@ -13,6 +13,7 @@
     SchoolSchedule *sched;
     NSMutableArray *dates;
     NSMutableArray *schoolDay;
+    MBProgressHUD *loading;
 }
 
 @end
@@ -28,6 +29,7 @@
     dates = [[NSMutableArray alloc]init];
     schoolDay = [[NSMutableArray alloc]init];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recievedLoginNotification:) name:@"logged in" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(errorLogingin:) name:@"errorLogin" object:nil];
     
     NSURL *url = [NSURL URLWithString:@"http://alnoorgames.com/agendify/datesdata.txt"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -62,10 +64,10 @@
     //Eg842wZz
     //sched = [[SchoolSchedule alloc]initWithUsername:@"tonyshu" Password:@"Mini12345!"];
     sched = [[SchoolSchedule alloc]initWithUsername:userNameTextField.text Password:passWordTextField.text];
-    MBProgressHUD *loading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    loading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     loading.labelFont = [UIFont fontWithName:@"Futura" size:14.0];
     loading.labelText = @"logging in";
-    
+    loading.hidden = NO;
     
 }
 
@@ -79,6 +81,8 @@
     }
 }
 -(void)recievedLoginNotification: (NSNotification *)notification{
+    
+    
     if (dates.count >=1) {
         
         [self performSegueWithIdentifier:@"calendar" sender:self];
@@ -87,6 +91,12 @@
         UIAlertView *lert  = [[UIAlertView alloc]initWithTitle:@"OOps 0.o" message:@"Error Reading dates please try to log in again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [lert show];
     }
+}
+-(void)errorLogingin: (NSNotification *)notification{
+    UIAlertView *lert  = [[UIAlertView alloc]initWithTitle:@"OOps 0.o" message:@"Error. Please makes sure username and password are correct" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [lert show];
+    
+    [loading hide:YES];
 }
 
 @end
