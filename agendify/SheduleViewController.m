@@ -120,7 +120,7 @@
             [UIView animateWithDuration:1.3 animations:^{
                 int i = 0;
                 [card setFrame:CGRectMake(card.frame.origin.x, card.frame.origin.y*6.0, card.frame.size.width, card.frame.size.height*6.0)];
-                for (UIView *sub in card.subviews) {
+                for (UILabel *sub in card.subviews) {
                     if (i==0) {
                         int height = 90;
                         sub.frame = CGRectMake(0, card.frame.size.height*0.4-(height*0.4), card.frame.size.width, height);
@@ -136,7 +136,7 @@
         
     } else {
         [UIView animateWithDuration:1.0 animations:^{
-            compressionButton.transform = CGAffineTransformMakeRotation(M_PI/2);
+            compressionButton.transform = CGAffineTransformMakeRotation(-M_PI);
             
         }];
         
@@ -150,10 +150,11 @@
         for (UIView *card in cards) {
             [UIView animateWithDuration:1.4 animations:^{
                 int i = 0;
-                for (UIView *sub in card.subviews) {
+                for (UILabel *sub in card.subviews) {
                     if (i==0) {
                         sub.frame = CGRectMake(0, 0, card.frame.size.width, card.frame.size.height/6.0);
                         cardHeight = card.frame.size.height/6.0;
+                        
                     }
                     i++;
                 }

@@ -23,6 +23,8 @@
         days = [NSMutableArray arrayWithArray:scedule];
         [self performSelector:@selector(sendDataFound) withObject:self afterDelay:1.0];
         
+        
+        
         /*
         NSString *userKey = [NSString stringWithFormat:@"sced"];
         NSString *lastUser = [[NSUserDefaults standardUserDefaults]objectForKey:@"user"];
