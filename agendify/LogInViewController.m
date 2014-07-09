@@ -41,10 +41,10 @@
             int dayOfCycle = [[GOT substringFromIndex:GOT.length-2]intValue];
             NSString *dateString = [GOT substringToIndex:GOT.length-2];
             NSDate *date = [NSDate dateFromString:dateString withFormat:@"MM/dd/yyyy"];
-            NSLog(@"%@",dateString);
             [dates addObject:date];
             [schoolDay addObject:[NSNumber numberWithInt:dayOfCycle]];
         }
+        
         
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -70,6 +70,7 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
     if ([segue.identifier isEqualToString:@"calendar"]) {
         SheduleViewController *vc = segue.destinationViewController;
         vc.schoolDaysOfCycle = schoolDay;
@@ -79,8 +80,12 @@
 }
 -(void)recievedLoginNotification: (NSNotification *)notification{
     if (dates.count >=1) {
+        
         [self performSegueWithIdentifier:@"calendar" sender:self];
 
+    } else {
+        UIAlertView *lert  = [[UIAlertView alloc]initWithTitle:@"OOps 0.o" message:@"Error Reading dates please try to log in again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [lert show];
     }
 }
 

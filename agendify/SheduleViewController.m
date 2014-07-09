@@ -25,6 +25,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
     isCompressed = false;
     sceduleScroll.delegate = self;
     sceduleScroll.contentSize = CGSizeMake(sceduleScroll.frame.size.width*schoolDates.count, sceduleScroll.frame.size.height*6);
@@ -67,7 +69,6 @@
         for (int j = 0; j<6; j++) {
             UIView *card = [[UIView alloc]initWithFrame:CGRectMake(i*sceduleScroll.frame.size.width, j*sceduleScroll.frame.size.height, sceduleScroll.frame.size.width, sceduleScroll.frame.size.height)];
             
-            NSLog(@"%f",card.frame.origin.x);
             int dayofCycle = [(NSNumber *)schoolDaysOfCycle[i] intValue]-1;
             card.backgroundColor = colors[dayofCycle][j];
             int height = 90;
