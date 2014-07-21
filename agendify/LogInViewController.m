@@ -20,7 +20,7 @@
 
 @implementation LogInViewController
 
-@synthesize userNameTextField,passWordTextField;
+@synthesize userNameTextField,passWordTextField,loginButton;
 
 
 - (void)viewDidLoad
@@ -28,11 +28,13 @@
     [super viewDidLoad];
     dates = [[NSMutableArray alloc]init];
     schoolDay = [[NSMutableArray alloc]init];
+    loginButton.layer.cornerRadius = 8.0;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(recievedLoginNotification:) name:@"logged in" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(errorLogingin:) name:@"errorLogin" object:nil];
-    
+    passWordTextField.delegate = self;
     NSURL *url = [NSURL URLWithString:@"http://alnoorgames.com/agendify/datesdata.txt"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setCachePolicy:NSURLRequestReloadIgnoringCacheData];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *string = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -43,8 +45,23 @@
             int dayOfCycle = [[GOT substringFromIndex:GOT.length-2]intValue];
             NSString *dateString = [GOT substringToIndex:GOT.length-2];
             NSDate *date = [NSDate dateFromString:dateString withFormat:@"MM/dd/yyyy"];
-            [dates addObject:date];
-            [schoolDay addObject:[NSNumber numberWithInt:dayOfCycle]];
+            
+            //date1 before date2 = nsorderderedascending
+            if ([[NSDate date] compare:date]==NSOrderedAscending||[[NSDate date] compare:date]==NSOrderedSame) {
+                [dates addObject:date];
+                [schoolDay addObject:[NSNumber numberWithInt:dayOfCycle]];
+            } else {
+                NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+                NSDateComponents *components2 = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
+                NSInteger day = [components day];
+                NSInteger day2 = [components2 day];
+                if (day==day2) {
+                    [dates addObject:date];
+                    [schoolDay addObject:[NSNumber numberWithInt:dayOfCycle]];
+                }
+                
+            }
+            
         }
         
         
@@ -57,12 +74,14 @@
     
     
 }
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self logIn:textField];
+    return YES;
+}
 
 
 - (IBAction)logIn:(id)sender {
-    //HNilforoshan
-    //Eg842wZz
-    //sched = [[SchoolSchedule alloc]initWithUsername:@"tonyshu" Password:@"Mini12345!"];
+
     sched = [[SchoolSchedule alloc]initWithUsername:userNameTextField.text Password:passWordTextField.text];
     loading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     loading.labelFont = [UIFont fontWithName:@"Futura" size:14.0];
@@ -97,6 +116,10 @@
     [lert show];
     
     [loading hide:YES];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return  UIStatusBarStyleLightContent;
 }
 
 @end

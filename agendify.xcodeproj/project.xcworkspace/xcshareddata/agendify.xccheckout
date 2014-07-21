@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>BD4A0403-3CA8-474F-96C9-8F69A1CD4E35</string>
+	<key>IDESourceControlProjectName</key>
+	<string>agendify</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D7A27FE6-17C0-4002-BD5E-4D319252C9FD</key>
+		<string>https://github.com/qwertyflagstop/agendify.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>agendify.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D7A27FE6-17C0-4002-BD5E-4D319252C9FD</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/qwertyflagstop/agendify.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D7A27FE6-17C0-4002-BD5E-4D319252C9FD</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D7A27FE6-17C0-4002-BD5E-4D319252C9FD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>agendify</string>
+		</dict>
+	</array>
+</dict>
+</plist>

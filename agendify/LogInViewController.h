@@ -12,7 +12,8 @@
 #import "AFNetworking.h"
 #import "NSDate+Helper.h"
 
-@interface LogInViewController : UIViewController
+@interface LogInViewController : UIViewController <UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
 @property (nonatomic,strong) SchoolSchedule *userSchedule;
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;

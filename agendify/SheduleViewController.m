@@ -40,7 +40,7 @@
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureCaptured:)];
     [sceduleScroll addGestureRecognizer:singleTap];
     
-    blockTimes = [NSArray arrayWithObjects:@"7:30 - 8:35",@"8:35 - 9:50",@"10:00 - 11:00",@"11:00 - 12:35",@"12:35 - 1:35",@"1:35 - 2:30", nil];
+    blockTimes = [NSArray arrayWithObjects:@"7:30 - 8:29",@"8:34 - 9:33",@"9:51 - 10:50",@"10:55 - 12:22",@"12:27 - 1:26",@"1:31 - 2:30", nil];
     
     cards = [[NSMutableArray alloc]init];
     
@@ -74,13 +74,13 @@
             
             int dayofCycle = [(NSNumber *)schoolDaysOfCycle[i] intValue]-1;
             if (j==0) {
-                card.backgroundColor = [UIColor colorWithWhite:0.231 alpha:1.000];
+                card.backgroundColor = [UIColor colorWithWhite:0.435 alpha:1.000];
             } else {
                 card.backgroundColor = colors[dayofCycle][j];
             }
             int height = 90;
             UILabel *classLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, card.frame.size.height*0.4-(height*0.4), card.frame.size.width, height)];
-            [classLabel setFont:[UIFont fontWithName:@"Futura" size:32.0]];
+            [classLabel setFont:[UIFont fontWithName:@"Futura" size:28.0]];
             [classLabel setNumberOfLines:0];
             [classLabel setTextColor:[UIColor whiteColor]];
             [classLabel setLineBreakMode:NSLineBreakByWordWrapping];
@@ -107,17 +107,94 @@
     NSDate *dayte = schoolDates[page];
    
     int cycDay = [(NSNumber *)[schoolDaysOfCycle objectAtIndex:page] intValue];
-
+    
     
     NSString *datText = [NSString stringWithFormat:@"%@ %@ (%i)",[dayte stringDayOfWeek],[dayte stringWithDateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle],cycDay];
     dateLabel.text =  datText;
     
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [self homeClicked:self];
+}
+
+-(void)scrollToBlock:(int)block{
+    if (isCompressed) {
+        [sceduleScroll scrollRectToVisible:CGRectMake(0, 0, sceduleScroll.frame.size.width, sceduleScroll.frame.size.height) animated:YES];
+    } else {
+        if (block<6) {
+           [sceduleScroll scrollRectToVisible:CGRectMake(0, block*sceduleScroll.frame.size.height, sceduleScroll.frame.size.width, sceduleScroll.frame.size.height) animated:YES];
+        } else {
+            [sceduleScroll scrollRectToVisible:CGRectMake(320, 0, sceduleScroll.frame.size.width, sceduleScroll.frame.size.height) animated:YES];
+        }
+    }
+}
+
+
+
 
 
 - (IBAction)homeClicked:(id)sender {
-    [sceduleScroll scrollRectToVisible:CGRectMake(0, 0, sceduleScroll.frame.size.width, sceduleScroll.frame.size.height) animated:YES];
+    NSDate *date = [NSDate date];
+    NSDateFormatter *format = [[NSDateFormatter alloc]init];
+    [format setDateFormat:@"HH:mm"];
+    NSString *timeString = [format stringFromDate:date];
+    NSScanner *scanner = [NSScanner scannerWithString:timeString];
+    int hours;
+    int minutes;
+    [scanner scanInt:&hours];
+    [scanner setScanLocation:scanner.scanLocation+1];
+    [scanner scanInt:&minutes];
+    int block = 0;
+    NSLog(@"%i:%i",hours,minutes);
+    if (hours<=7) {
+        block = 0;
+    } if (hours == 8) {
+        if (minutes<29) {
+            block = 0;
+        } else{
+            block = 1;
+        }
+    } if (hours == 9) {
+        if (minutes<33) {
+            block = 1;
+        } else{
+            block = 2;
+        }
+        
+    } if (hours == 10) {
+        if (minutes<50) {
+            block = 2;
+        } else{
+            block = 3;
+        }
+    }  if (hours == 11) {
+        block = 3;
+        
+    }  if (hours == 12) {
+        if (minutes<22) {
+            block = 3;
+        } else{
+            block = 4;
+        }
+        
+    }  if (hours == 13) {
+        if (minutes<26) {
+            block = 4;
+        } else{
+            block = 5;
+        }
+    }  if (hours == 14) {
+        if (minutes<30) {
+           block = 5;
+        } else {
+            [self compressView:self];
+        }
+    } if (hours>=15) {
+        [self compressView:self];
+    }
+    [self scrollToBlock:block];
+
 }
 
 - (IBAction)compressView:(id)sender {
@@ -217,4 +294,7 @@
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return  UIStatusBarStyleLightContent;
 }
+
+
+
 @end

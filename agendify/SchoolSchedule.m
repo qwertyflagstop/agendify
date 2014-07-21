@@ -10,7 +10,6 @@
 
 @implementation SchoolSchedule {
     NSMutableArray *days;
-    
 }
 
 /*
@@ -172,7 +171,7 @@
     NSData *dat = [[NSUserDefaults standardUserDefaults]objectForKey:userKey];
     NSArray *scedule = [NSKeyedUnarchiver unarchiveObjectWithData:dat];
     days = [NSMutableArray arrayWithArray:scedule];
-    
+
     
     
     //Lets Load Up the schedule!
